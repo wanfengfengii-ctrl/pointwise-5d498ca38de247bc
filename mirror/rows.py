@@ -57,10 +57,3 @@ def replace_current_rows(connection, envelope: RevisionEnvelope):
         ),
     )
     return rows
-
-
-def find_live_row(connection, table_id, slot):
-    record = connection.execute(
-        'SELECT slot FROM current_rows WHERE table_id = ? AND slot = ?', (table_id, slot),
-    ).fetchone()
-    return None if record is None else record[0]

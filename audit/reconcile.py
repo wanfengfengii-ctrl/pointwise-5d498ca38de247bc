@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from audit.annotations import read_row_annotations
 from audit.totals import total_mm
 from intake.origins import Origin, validate_text
+from mirror.local_history import load_installed_identities
 from mirror.rows import read_current_rows
 from mirror.store import mirror_read, read_head
 
@@ -31,8 +32,9 @@ def read(connection, table_id):
             return None
         current = read_current_rows(connection, table_id)
         annotations = read_row_annotations(connection, table_id)
+        identities = load_installed_identities(connection, table_id, revision)
         details = tuple(
-            LedgerRow(row.slot, row.reading_mm, row.origin, annotations.get(row.slot))
+            LedgerRow(row.slot, row.reading_mm, row.origin, annotations.get(identities.get(row.slot)))
             for row in current
         )
         return Ledger(table_id, revision, details, total_mm(details))
