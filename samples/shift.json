@@ -1,0 +1,11 @@
+{
+  "table_id": "岚北-0412",
+  "batch_id": "晨班-0412",
+  "observations": [
+    {"reading_mm": 7, "origin": {"station": "石桥", "record": "东线-03"}},
+    {"reading_mm": 7, "origin": {"station": "石桥", "record": "西线-02"}}
+  ],
+  "day_notes": [{"slot": 1, "text": "复测"}, {"slot": 2, "text": "已核"}],
+  "edits": [{"op": "move", "slot": 1, "to": 2}, {"op": "move", "slot": 2, "to": 1}],
+  "late_note": {"slot": 1, "text": "待现场复核"}
+}
